@@ -4,17 +4,14 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.coding.exercise.content.playlist.LegalPlayListPlayer.LegalPlayList;
 import com.coding.exercise.content.playlist.creation.model.PlayListData;
-import com.coding.exercise.content.playlist.creation.model.Preroll;
 import com.coding.exercise.content.playlist.creation.model.Video;
 import com.coding.exercise.content.playlist.filter.PlayListFilterByContentIdCriteria;
-import com.coding.exercise.content.playlist.filter.VideoFilterByCountryAndLanguage;
 import com.coding.exercise.content.playlist.filter.VideoFilterByCountryCode;
 /**
  * Generated the possible legal playlists for the given playlistData, matching the contentIdentifier and the country Code;
