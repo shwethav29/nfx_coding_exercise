@@ -1,6 +1,7 @@
 package com.coding.exercise.content.playlist;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.Reader;
 
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.coding.exercise.content.playlist.creation.model.PlayListData;
+import com.google.common.base.Strings;
 /**
  * This class exposes methods to parsePlayList data and to get the playlists from the playListData.
  * Uses Factory to get the parser for parsing the incoming data based on the dataformat. 
@@ -36,6 +38,9 @@ public final class CreatePlayList {
 	 * for the given country.
 	 */
 	public LegalPlayListPlayer getLegalPlayListPlayer(PlayListData playListData,String contentIdentifier,String countryCode) {
+		checkNotNull(playListData,"No PlayList Data Found");
+		checkArgument(!Strings.isNullOrEmpty(contentIdentifier),"Missing Content Identifier not specified");
+		checkArgument(!Strings.isNullOrEmpty(countryCode),"Missing Country code");
 		LegalPlayListGenerator legalListGenerator = new LegalPlayListGeneratorImpl();
 		return legalListGenerator.getLegalPlaylists(playListData, contentIdentifier, countryCode);
 	}

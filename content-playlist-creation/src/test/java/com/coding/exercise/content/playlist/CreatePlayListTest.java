@@ -64,5 +64,40 @@ public class CreatePlayListTest {
 		CreatePlayList createPlayList = new CreatePlayList();
 		createPlayList.loadPlayListData(reader, DataFormat.XML);
 	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testNullPlayListData() {
+		CreatePlayList createPlayList = new CreatePlayList();
+		createPlayList.getLegalPlayListPlayer(null, "MI3", "US");
+
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testEmptyContainer() {
+		CreatePlayList createPlayList = new CreatePlayList();
+		PlayListData playListData = new PlayListData();
+		createPlayList.getLegalPlayListPlayer(playListData, "", "US");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testEmptyCountryCode() {
+		CreatePlayList createPlayList = new CreatePlayList();
+		PlayListData playListData = new PlayListData();
+		createPlayList.getLegalPlayListPlayer(playListData, "MI3", "");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullContainer() {
+		CreatePlayList createPlayList = new CreatePlayList();
+		PlayListData playListData = new PlayListData();
+		createPlayList.getLegalPlayListPlayer(playListData, null, "US");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullCountryCode() {
+		CreatePlayList createPlayList = new CreatePlayList();
+		PlayListData playListData = new PlayListData();
+		createPlayList.getLegalPlayListPlayer(playListData, "MI3", null);
+	}
 
 }

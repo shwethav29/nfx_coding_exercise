@@ -4,11 +4,11 @@
 		<Property name="LOG_PATTERN">
 			[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
 		</Property>
-		<Property name="basePath">C:\\logs</Property>
+		<Property name="basePath">logs</Property>
 	</Properties>
 	<Appenders>
 		<!-- Rolling File Appender -->
-		<RollingFile name="playlistLog" fileName="logs/playListCreation.log" filePattern="logs/playListCreation-%d{yyyy-MM-dd}.log">
+		<RollingFile name="playlistLog" fileName="${basePath}/playListCreation.log" filePattern="${basePath}/playListCreation-%d{yyyy-MM-dd}.log">
             <PatternLayout   pattern="${LOG_PATTERN}" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
