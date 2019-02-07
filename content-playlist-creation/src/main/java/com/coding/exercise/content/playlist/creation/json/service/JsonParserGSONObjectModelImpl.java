@@ -4,6 +4,7 @@ import java.io.Reader;
 import java.io.StringReader;
 
 import com.coding.exercise.content.playlist.creation.model.Content;
+import com.coding.exercise.content.playlist.creation.model.ListPlayListData;
 import com.coding.exercise.content.playlist.creation.model.PlayListData;
 import com.coding.exercise.content.playlist.creation.model.Preroll;
 import com.coding.exercise.content.playlist.filter.PlayListFilterByContentIdCriteria;
@@ -25,6 +26,12 @@ public final class JsonParserGSONObjectModelImpl implements JsonParserService{
 		Gson gson = gsonBuilder.create();
 		PlayListData playListData = gson.fromJson(inputReader, PlayListData.class);
 		return playListData;
+	}
+	
+	public ListPlayListData parseJsonList(Reader inputReader) {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.create();
+		return gson.fromJson(inputReader, ListPlayListData.class);
 	}
 	
 	public static void main(String[] args) {
@@ -83,5 +90,8 @@ public final class JsonParserGSONObjectModelImpl implements JsonParserService{
 		for(Content content:data.getContent()) {
 			System.out.println(content.getName());
 		}
+		
+//		ListPlayListData listdata = parserImpl.parseJsonList(reader);
+//		listdata.getContent().forEach(con -> System.out.println(con.getName()));
 	}
 }

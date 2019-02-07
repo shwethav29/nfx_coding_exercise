@@ -115,6 +115,7 @@ public class LegalPlayListGeneratorTest {
 		PlayListData playListData = playListParser.parsePlayListData(reader);
 		LegalPlayListPlayer legalPlayListsForUS = new LegalPlayListGeneratorImpl().getLegalPlaylists(playListData,
 				"MI3", "US");
+		System.out.println(legalPlayListsForUS.toString());
 		assertTrue("[{V4,V7,V10,V1},{V6,V9,V12,V3}]".equals(legalPlayListsForUS.toString()));
 	}
 

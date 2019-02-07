@@ -52,8 +52,8 @@ public class TestJSONPlayListParser {
 
 		PlayListData playListData = playListParser.parsePlayListData(reader);
 
-		assertTrue(playListData.getContent().length > 0);
-		assertTrue(playListData.getPreroll().length > 0);
+		assertTrue(playListData.getContent().size() > 0);
+		assertTrue(playListData.getPreroll().size() > 0);
 	}
 
 	@Test
@@ -96,8 +96,8 @@ public class TestJSONPlayListParser {
 		System.out.println(file.getAbsolutePath());
 		try (Reader reader = new FileReader(file)) {
 			PlayListData playListData = playListParser.parsePlayListData(reader);
-			assertTrue(playListData.getContent().length == 1);
-			assertTrue(playListData.getPreroll().length == 1);
+			assertTrue(playListData.getContent().size() == 1);
+			assertTrue(playListData.getPreroll().size() == 1);
 		}
 	}
 }

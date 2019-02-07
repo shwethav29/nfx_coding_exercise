@@ -1,12 +1,14 @@
 package com.coding.exercise.content.playlist.creation.model;
 
+import java.util.List;
+
 public class Content {
 
 	private String name;
 	
-	private Preroll[] preroll;
+	private List<Preroll> preroll;
 	
-	private Video[] videos;
+	private List<Video> videos;
 
 	public String getName() {
 		return name;
@@ -16,20 +18,21 @@ public class Content {
 		this.name = name;
 	}
 
-	public Preroll[] getPreroll() {
+	public List<Preroll> getPreroll() {
 		return preroll;
 	}
 
-	public void setPreroll(Preroll[] preroll) {
+	public void setPreroll(List<Preroll> preroll) {
 		this.preroll = preroll;
 	}
 
-	public Video[] getVideos() {
+	public List<Video> getVideos() {
 		return videos;
 	}
 
-	public void setVideos(Video[] videos) {
+	public void setVideos(List<Video> videos) {
 		this.videos = videos;
 	}
+
 
 }

@@ -63,7 +63,7 @@ public class LegalPlayListPlayer {
 	public String toString() {
 		StringBuilder builder = new StringBuilder("[");
 		for (LegalPlayList legalPlayList : listOfPlayLists) {
-			builder.append(listOfPlayLists.toString());
+			builder.append(legalPlayList.toString());
 			builder.append(",");
 		}
 		if (listOfPlayLists.size() != 0) {

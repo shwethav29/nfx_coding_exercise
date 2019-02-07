@@ -2,7 +2,6 @@ package com.coding.exercise.content.playlist;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,18 +34,18 @@ public final class LegalPlayListGeneratorImpl implements LegalPlayListGenerator{
 													.applyFilterCriteria(playListData);
 		checkArgument(Optional.ofNullable(filteredPlayList.getContent()).isPresent(),"Zero or too many Contents for "+contentIdentifier);
 
-		List<Video> contentVideosOfCountry = new VideoFilterByCountryCode(countryCode).filterVideos(Arrays.asList(filteredPlayList.getContent()[0].getVideos()));
+		List<Video> contentVideosOfCountry = new VideoFilterByCountryCode(countryCode).filterVideos(filteredPlayList.getContent().get(0).getVideos());
 		
 		checkArgument(contentVideosOfCountry.size()>0,"No videos for the content "+contentIdentifier);
 		
 		LegalPlayListPlayer legalPlayListPlayer = new LegalPlayListPlayer();
 		
-		List<Video> prerollVideoForCountryAndLang = Stream.of(filteredPlayList.getPreroll()).
-							flatMap(preroll -> (Stream.of(preroll.getVideos()).map(video -> {video.setPrerollName(preroll.getName()); return video;})))
+		List<Video> prerollVideoForCountryAndLang = filteredPlayList.getPreroll().stream().
+							flatMap(preroll -> (preroll.getVideos().stream().map(video -> {video.setPrerollName(preroll.getName()); return video;})))
 							.filter(v -> Stream.of(v.getAttributes().getCountries()).collect(Collectors.toSet()).contains(countryCode))
 							.filter(v -> (contentVideosOfCountry.stream().map(cv -> cv.getAttributes().getLanguage()).collect(Collectors.toSet())).contains(v.getAttributes().getLanguage()))
 							.collect(Collectors.toList());
-		List<String> listOfPrerollName = Stream.of(filteredPlayList.getContent()[0].getPreroll()).map(p -> p.getName()).collect(Collectors.toList());
+		List<String> listOfPrerollName = filteredPlayList.getContent().get(0).getPreroll().stream().map(p -> p.getName()).collect(Collectors.toList());
 
 		//for each content video check if legal playlist
 		for (Video contentVideo:contentVideosOfCountry) {

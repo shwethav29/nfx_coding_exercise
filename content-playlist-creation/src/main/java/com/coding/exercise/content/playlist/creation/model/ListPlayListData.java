@@ -2,7 +2,7 @@ package com.coding.exercise.content.playlist.creation.model;
 
 import java.util.List;
 
-public class PlayListData {
+public class ListPlayListData {
 
 	private List<Content> content;
 	private List<Preroll> preroll;
@@ -18,5 +18,5 @@ public class PlayListData {
 	public void setPreroll(List<Preroll> preroll) {
 		this.preroll = preroll;
 	}
-	
+
 }

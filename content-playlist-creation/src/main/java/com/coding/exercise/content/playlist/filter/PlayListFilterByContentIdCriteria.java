@@ -1,5 +1,6 @@
 package com.coding.exercise.content.playlist.filter;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,11 +29,11 @@ public final class PlayListFilterByContentIdCriteria implements PlayListFilterCr
 	@Override
 	public PlayListData applyFilterCriteria(PlayListData playListData) {
 		PlayListData filteredPlayListData = new PlayListData();
-		Content[] filteredContentArray = Stream.of(playListData.getContent()).filter(c -> c.getName().equals(contentIdentifier)).toArray(Content[]::new);
-		if(filteredContentArray.length>0) {
-			Set<String> collect =Stream.of(filteredContentArray[0].getPreroll()).flatMap(p -> Stream.of(p.getName())).collect(Collectors.toSet());
-			Preroll[] prerollsForMatchingContent = Stream.of(playListData.getPreroll()).filter(p -> collect.contains(p.getName())).toArray(Preroll[]::new);
-			filteredPlayListData.setContent(filteredContentArray);
+		List<Content> filteredContentList = playListData.getContent().stream().filter(c -> c.getName().equals(contentIdentifier)).collect(Collectors.toList());
+		if(filteredContentList.size()>0) {
+			Set<String> collect =filteredContentList.get(0).getPreroll().stream().flatMap(p -> Stream.of(p.getName())).collect(Collectors.toSet());
+			List<Preroll> prerollsForMatchingContent = playListData.getPreroll().stream().filter(p -> collect.contains(p.getName())).collect(Collectors.toList());
+			filteredPlayListData.setContent(filteredContentList);
 			filteredPlayListData.setPreroll(prerollsForMatchingContent);
 		}
 		return filteredPlayListData;
