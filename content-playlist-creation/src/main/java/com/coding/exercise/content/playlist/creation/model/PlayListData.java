@@ -1,11 +1,12 @@
 package com.coding.exercise.content.playlist.creation.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayListData {
 
-	private List<Content> content;
-	private List<Preroll> preroll;
+	private List<Content> content = new ArrayList<Content>();
+	private List<Preroll> preroll = new ArrayList<Preroll>();
 	public List<Content> getContent() {
 		return content;
 	}
